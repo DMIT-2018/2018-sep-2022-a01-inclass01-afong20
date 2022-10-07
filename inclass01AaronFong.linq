@@ -33,3 +33,20 @@ Players
 		Count = x.Key.Count()
 	})
 	.Dump()
+	
+//q3
+Teams
+	.OrderBy(x => x.TeamName)
+	.Select(x => new {
+		Team = x.TeamName,
+		Coach = x.Coach,
+		Players = x.Players
+			.OrderBy(x => x.LastName)
+			.ThenBy(x => x.FirstName)
+			.Select(x => new {
+			LastName = x.LastName,
+			FirstName = x.FirstName,
+			Gender = x.Gender == "F" ? "Female" : "Male",
+			Age = x.Age
+		})
+	})
