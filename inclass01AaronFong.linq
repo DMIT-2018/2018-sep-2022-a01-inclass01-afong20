@@ -51,3 +51,27 @@ Teams
 		})
 	})
 	.Dump();
+	
+//q4
+var wins = Teams.Select(x => x);
+
+Teams
+	.Select(x => new {
+		TeamName = x.TeamName,
+		Wins = x.Wins
+	})
+	.Where(x => x.Wins == wins.Max(x => x.Wins))
+	.Dump();
+	
+//q5
+PlayerStats
+	.Select(x => new {
+		name = x.Player.FirstName + " " + x.Player.LastName,
+		teamname = x.Player.Team.TeamName,
+		goals = x.Goals,
+		assists = x.Assists,
+		redccards = x.RedCard == true ? 1 : 0,
+		yellowcards = x.YellowCard == true ? 1: 0
+	})
+	.OrderBy(x => x.name)
+	.Dump();
