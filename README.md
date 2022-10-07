@@ -1,6 +1,6 @@
 # In-Class Assessment - LINQ
 
-**Your Name:** ______________________________ 
+**Your Name:** Aaron Fong
 
 > Place your name in the lines above. Work on the lab computer, not your laptop or personal computer.
 
