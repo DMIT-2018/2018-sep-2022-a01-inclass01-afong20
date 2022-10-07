@@ -21,6 +21,15 @@ Guardians
 			Gender = x.Gender,
 			Team = x.Team.TeamName
 		})
-})
-.OrderByDescending(x => x.Children.Count())
-.Dump();
+	})
+	.OrderByDescending(x => x.Children.Count())
+	.Dump();
+
+//q2
+Players
+	.GroupBy(x => x.Gender)
+	.Select(x => new {
+		Gender = x.Key == "F" ? "Female" : "Male",
+		Count = x.Key.Count()
+	})
+	.Dump()
