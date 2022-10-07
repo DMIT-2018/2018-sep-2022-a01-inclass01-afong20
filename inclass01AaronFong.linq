@@ -15,7 +15,9 @@ Guardians
 	.Where(x => x.Players.Count() > 1)
 	.Select(x => new {
 		Name = x.FirstName + " " + x.LastName,
-		Children = x.Players.Select(x => new {
+		Children = x.Players
+			.OrderBy(x => x.Age)
+			.Select(x => new {
 			Name = x.FirstName,
 			Age = x.Age,
 			Gender = x.Gender,
@@ -65,13 +67,14 @@ Teams
 	
 //q5
 PlayerStats
+	.GroupBy(x => x.Player)
 	.Select(x => new {
-		name = x.Player.FirstName + " " + x.Player.LastName,
-		teamname = x.Player.Team.TeamName,
-		goals = x.Goals,
-		assists = x.Assists,
-		redccards = x.RedCard == true ? 1 : 0,
-		yellowcards = x.YellowCard == true ? 1: 0
+		name = x.Key.FirstName + " " + x.Key.LastName,
+		teamname = x.Key.Team.TeamName,
+		goals = x.Sum(x => x.Goals),
+		assists = x.Sum(x => x.Assists),
+		redccards = x.Sum(x => x.RedCard == true ? 1 : 0),
+		yellowcards = x.Sum(x => x.YellowCard == true ? 1: 0)
 	})
 	.OrderBy(x => x.name)
 	.Dump();
