@@ -32,7 +32,7 @@ Players
 		Gender = x.Key == "F" ? "Female" : "Male",
 		Count = x.Key.Count()
 	})
-	.Dump()
+	.Dump();
 	
 //q3
 Teams
@@ -50,3 +50,4 @@ Teams
 			Age = x.Age
 		})
 	})
+	.Dump();
